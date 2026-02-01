@@ -157,7 +157,7 @@ const AppointmentModal = ({ isOpen, onClose }) => {
 
         .success-message { text-align: center; padding: 20px 0; }
         .success-message h3 { color: var(--accent-orange); font-size: 2rem; margin-bottom: 8px; }
-        .error-msg { color: #ff4d4d; font-size: 0.9rem; margin-top: 12px; text-align: center; }
+        .error-msg { color: #FFAC1C; font-size: 0.9rem; margin-top: 12px; text-align: center; }
 
         @keyframes slideUp {
           from { opacity: 0; transform: translateY(20px); }

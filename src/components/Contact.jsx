@@ -3,151 +3,151 @@ import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        serviceType: '',
-        budget: '',
-        vision: '',
-    });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    serviceType: '',
+    budget: '',
+    vision: '',
+  });
 
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [status, setStatus] = useState(null); // 'success' or 'error'
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState(null); // 'success' or 'error'
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setStatus(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus(null);
 
-        try {
-            await addDoc(collection(db, "contacts"), {
-                ...formData,
-                createdAt: serverTimestamp()
-            });
-            setStatus('success');
-            setFormData({ name: '', email: '', serviceType: '', budget: '', vision: '' });
-            setTimeout(() => setStatus(null), 3000);
-        } catch (error) {
-            console.error("Error submitting form: ", error);
-            setStatus('error');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+    try {
+      await addDoc(collection(db, "contacts"), {
+        ...formData,
+        createdAt: serverTimestamp()
+      });
+      setStatus('success');
+      setFormData({ name: '', email: '', serviceType: '', budget: '', vision: '' });
+      setTimeout(() => setStatus(null), 3000);
+    } catch (error) {
+      console.error("Error submitting form: ", error);
+      setStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-    return (
-        <section id="email" className="contact-section">
-            <div className="container contact-container">
+  return (
+    <section id="contact" className="contact-section">
+      <div className="container contact-container">
 
-                {/* Header */}
-                <div className="contact-header">
-                    <div className="section-label">
-                        <span className="dot-orange"></span> Contact
-                    </div>
-                    <h2 className="section-heading">
-                        Contact us for amazing video <br /> editing projects
-                    </h2>
-                </div>
+        {/* Header */}
+        <div className="contact-header">
+          <div className="section-label">
+            <span className="dot-orange"></span> Contact
+          </div>
+          <h2 className="section-heading">
+            Contact us for amazing video <br /> editing projects
+          </h2>
+        </div>
 
-                {/* Form */}
-                <form className="contact-form" onSubmit={handleSubmit}>
+        {/* Form */}
+        <form className="contact-form" onSubmit={handleSubmit}>
 
-                    {/* Top Row: Name & Email */}
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label>Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Jane Smith"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="jane@framer.com"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    {/* Video Type Dropdown */}
-                    <div className="form-group">
-                        <label>What Kind of Video Do You Need?</label>
-                        <div className="select-wrapper">
-                            <select
-                                name="serviceType"
-                                value={formData.serviceType}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="" disabled>Select...</option>
-                                <option value="youtube">YouTube Video</option>
-                                <option value="shorts">Shorts/Reels</option>
-                                <option value="corporate">Corporate</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    {/* Budget Radio Group */}
-                    <div className="form-group">
-                        <label>What's Your Budget Range?</label>
-                        <div className="budget-options">
-                            {['Under $500', '$500-$1000', '$1000-$2000', '$2000-$5000'].map((option) => (
-                                <label key={option} className="radio-label">
-                                    <input
-                                        type="radio"
-                                        name="budget"
-                                        value={option}
-                                        checked={formData.budget === option}
-                                        onChange={handleChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    {option}
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Message Textarea */}
-                    <div className="form-group">
-                        <label>Share Your Vision</label>
-                        <textarea
-                            name="vision"
-                            placeholder="Tell us about your project..."
-                            rows="4"
-                            value={formData.vision}
-                            onChange={handleChange}
-                            required
-                        ></textarea>
-                    </div>
-
-                    {/* Submit Button */}
-                    <div className="form-group full-width">
-                        <button type="submit" className="submit-btn" disabled={isSubmitting}>
-                            {isSubmitting ? 'Sending Request...' : 'Send Request'}
-                        </button>
-                        {status === 'success' && <p className="success-msg">Message sent successfully!</p>}
-                        {status === 'error' && <p className="error-msg">Failed to send. Please try again.</p>}
-                    </div>
-
-                </form>
-
+          {/* Top Row: Name & Email */}
+          <div className="form-row">
+            <div className="form-group">
+              <label>Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Jane Smith"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="jane@framer.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
 
-            <style>{`
+          {/* Video Type Dropdown */}
+          <div className="form-group">
+            <label>What Kind of Video Do You Need?</label>
+            <div className="select-wrapper">
+              <select
+                name="serviceType"
+                value={formData.serviceType}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>Select...</option>
+                <option value="youtube">YouTube Video</option>
+                <option value="shorts">Shorts/Reels</option>
+                <option value="corporate">Corporate</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Budget Radio Group */}
+          <div className="form-group">
+            <label>What's Your Budget Range?</label>
+            <div className="budget-options">
+              {['Under $500', '$500-$1000', '$1000-$2000', '$2000-$5000'].map((option) => (
+                <label key={option} className="radio-label">
+                  <input
+                    type="radio"
+                    name="budget"
+                    value={option}
+                    checked={formData.budget === option}
+                    onChange={handleChange}
+                  />
+                  <span className="radio-custom"></span>
+                  {option}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Message Textarea */}
+          <div className="form-group">
+            <label>Share Your Vision</label>
+            <textarea
+              name="vision"
+              placeholder="Tell us about your project..."
+              rows="4"
+              value={formData.vision}
+              onChange={handleChange}
+              required
+            ></textarea>
+          </div>
+
+          {/* Submit Button */}
+          <div className="form-group full-width">
+            <button type="submit" className="submit-btn" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending Request...' : 'Send Request'}
+            </button>
+            {status === 'success' && <p className="success-msg">Message sent successfully!</p>}
+            {status === 'error' && <p className="error-msg">Failed to send. Please try again.</p>}
+          </div>
+
+        </form>
+
+      </div>
+
+      <style>{`
 /* ==========================
    CONTACT SECTION BASE
 ========================== */
@@ -407,8 +407,8 @@ textarea::placeholder {
 }
 
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Contact;

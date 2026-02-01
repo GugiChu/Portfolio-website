@@ -20,7 +20,7 @@ const steps = [
 
 const Process = () => {
   return (
-    <section className="process-section">
+    <section id="process" className="process-section">
       <div className="container process-container">
 
         {/* Left: Image */}
@@ -29,6 +29,7 @@ const Process = () => {
             src="https://i.pinimg.com/1200x/62/4c/5a/624c5a9dd1fdba135a165e263bded442.jpg"
             alt="Process"
             className="process-img"
+            loading="lazy"
           />
         </div>
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <section className="hero">
+    <section id="home" className="hero">
       <div className="hero-content">
 
         {/* Availability Badge */}
@@ -13,7 +13,7 @@ const Hero = () => {
 
         {/* Main Heading */}
         <h1 className="hero-heading">
-          Every Great Story 
+          Every Great Story
           {/* <span className="icon-wrapper">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2L14.39 9.61L22 12L14.39 14.39L12 22L9.61 14.39L2 12L9.61 9.61L12 2Z" fill="white" />
@@ -25,8 +25,8 @@ const Hero = () => {
 
         {/* CTA Buttons */}
         <div className="cta-group">
-          <button className="btn-primary">Editing Work</button>
-          <button className="btn-secondary">How it works</button>
+          <a href="https://www.instagram.com/edixus" target="_blank" rel="noopener noreferrer" className="btn-primary">Editing Work</a>
+          <a href="#faq" className="btn-secondary">How it works</a>
         </div>
 
         {/* Social Proof */}
@@ -145,12 +145,17 @@ const Hero = () => {
   border-radius: 999px;
   font-weight: 500;
   font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  line-height: normal;
 }
 
 .btn-primary {
   background-color: var(--accent-orange);
   color: #000;
   transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
 }
 
 .btn-primary:hover {

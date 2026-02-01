@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import logo from '../assets/logo.jpg';
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,12 +14,20 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [mobileMenuOpen]);
+
   return (
     <div className="navbar-wrapper">
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <div className="logo">
           <div className="logo-icon">
-            <img src="../public/logo.jpg" alt="Logo" />
+            <img src={logo} alt="Logo" width="32" height="32" />
           </div>
           <span className="logo-text">
             Edixus<span className="logo-suffix"></span>
@@ -27,20 +37,20 @@ const Navbar = () => {
         {/* Desktop Links */}
         <ul className="nav-links">
           <li>
-            <a href="#services">Services</a>
+            <a href="#home">Home</a>
           </li>
           <li>
             <a href="#work">Work</a>
           </li>
           <li>
-            <a href="#testimonial">Testimonial</a>
+            <a href="#process">Process</a>
           </li>
           <li>
-            <a href="#email">Email</a>
+            <a href="#testimonials">Testimonials</a>
           </li>
         </ul>
 
-        <button className="contact-btn desktop-only">Contact us</button>
+        <a href="#contact" className="contact-btn desktop-only">Contact us</a>
 
         {/* Mobile Toggle */}
         <button
@@ -59,8 +69,8 @@ const Navbar = () => {
       <div className={`mobile-menu ${mobileMenuOpen ? "open" : ""}`}>
         <ul className="mobile-links">
           <li>
-            <a href="#services" onClick={() => setMobileMenuOpen(false)}>
-              Services
+            <a href="#home" onClick={() => setMobileMenuOpen(false)}>
+              Home
             </a>
           </li>
           <li>
@@ -69,17 +79,17 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="#testimonial" onClick={() => setMobileMenuOpen(false)}>
-              Testimonial
+            <a href="#process" onClick={() => setMobileMenuOpen(false)}>
+              Process
             </a>
           </li>
           <li>
-            <a href="#email" onClick={() => setMobileMenuOpen(false)}>
-              Email
+            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)}>
+              Testimonials
             </a>
           </li>
         </ul>
-        <button className="contact-btn mobile-btn">Contact us</button>
+        <a href="#contact" className="contact-btn mobile-btn" onClick={() => setMobileMenuOpen(false)}>Contact us</a>
       </div>
 
       <style>{`
@@ -146,6 +156,7 @@ const Navbar = () => {
 .nav-links a {
   font-size: 0.95rem;
   color: #ccc;
+  text-decoration: none;
   transition: color 0.2s;
 }
 
@@ -159,6 +170,13 @@ const Navbar = () => {
   padding: 10px 24px;
   border-radius: 9999px;
   font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.contact-btn:hover {
+  transform: scale(1.05);
 }
 
 /* ================= MOBILE TOGGLE ================= */
@@ -168,6 +186,8 @@ const Navbar = () => {
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 1002;
+  position: relative;
 }
 
 .hamburger {
@@ -178,11 +198,34 @@ const Navbar = () => {
   justify-content: space-between;
 }
 
+/* ================= MOBILE TOGGLE ANIMATION ================= */
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+/* We need 3 spans for a standard hamburger to turn into X easily, or use 2 spans.
+   The current JSX has 2 spans. Let's adjust for 2 spans.
+*/
+
 .hamburger span {
   height: 2px;
   background: #fff;
   border-radius: 2px;
   transition: 0.3s;
+  transform-origin: center;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* ================= MOBILE MENU ================= */
@@ -222,8 +265,12 @@ const Navbar = () => {
 
 @media (max-width: 767px) {
   .nav-links,
-  .contact-btn {
+  .contact-btn.desktop-only {
     display: none;
+  }
+
+  .contact-btn.mobile-btn {
+    display: inline-block;
   }
 
   .mobile-toggle {

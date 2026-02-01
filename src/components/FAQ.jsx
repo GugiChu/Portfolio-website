@@ -33,7 +33,7 @@ const FAQ = () => {
   };
 
   return (
-    <section id="testimonial" className="faq-section">
+    <section id="faq" className="faq-section">
       <div className="container faq-container">
 
         {/* Left Side: Text & CTA */}

@@ -16,7 +16,7 @@ const rotations = [-2, 3, -1, 4, -3, 2, -4, 1, -2, 3];
 
 const Testimonials = () => {
     return (
-        <section className="testimonials-section">
+        <section id="testimonials" className="testimonials-section">
             <div className="container">
                 <div className="section-header">
                     <span className="section-label"><span className="dot-orange"></span>Testimonials</span>
@@ -127,14 +127,20 @@ const Testimonials = () => {
         }
 
         @media (max-width: 768px) {
-            .section-heading { font-size: 2rem; }
+            .testimonials-section {
+                padding: 60px 16px;
+            }
+            .section-heading { 
+                font-size: 2rem; 
+            }
             .testimonial-card-wrapper {
-                margin-bottom: 60px;
-                /* Mobile: tighter stacking */
-                top: calc(15vh + calc(var(--index) * 15px)); 
+                margin-bottom: 40px;
+                /* Mobile: tighter stacking start */
+                top: calc(10vh + calc(var(--index) * 10px)); 
             }
              .testimonial-card {
                 max-width: 100%;
+                border-radius: 12px;
             }
         }
       `}</style>
