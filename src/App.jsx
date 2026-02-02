@@ -8,10 +8,12 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
-import Login from './components/admin/Login';
-import AdminDashboard from './components/admin/AdminDashboard';
+// Lazy Load Pages
+const Releases = React.lazy(() => import('./components/Releases'));
+const Login = React.lazy(() => import('./components/admin/Login'));
+const AdminDashboard = React.lazy(() => import('./components/admin/AdminDashboard'));
+
 import ProtectedRoute from './components/admin/ProtectedRoute';
-import Releases from './components/Releases';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 
@@ -53,14 +55,20 @@ const App = () => {
   return (
     <Router>
       <div className="app-container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/releases" element={<Releases />} />
-          <Route
-            path="/master"
-            element={user ? <AdminDashboard /> : <Login />}
-          />
-        </Routes>
+        <React.Suspense fallback={
+          <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#050505', color: '#fff' }}>
+            Loading...
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/releases" element={<Releases />} />
+            <Route
+              path="/master"
+              element={user ? <AdminDashboard /> : <Login />}
+            />
+          </Routes>
+        </React.Suspense>
       </div>
     </Router>
   );

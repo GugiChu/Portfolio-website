@@ -4,11 +4,8 @@ const testimonials = [
     '/ss/1.jpeg',
     '/ss/2.jpeg',
     '/ss/3.jpeg',
-    '/ss/4.jpeg',
     '/ss/5.jpeg',
     '/ss/6.jpeg',
-    '/ss/7.jpeg',
-    '/ss/8.jpeg',
 ];
 
 // Pre-define rotations for a consistent messy stack look

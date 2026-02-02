@@ -1,18 +1,23 @@
 import React from 'react';
 
 const Footer = () => {
-    return (
-        <footer className="footer-section">
-            <div className="container footer-content">
-                <div className="footer-left">
-                    <a href="mailto:hello@anmol.com" className="footer-email">anmoltypebusiness@gmail.com</a>
-                </div>
-                <div className="footer-right">
-                    <p>&copy; {new Date().getFullYear()} The Gugichu Pvt. Ltd.</p>
-                </div>
-            </div>
+  return (
+    <footer className="footer-section">
+      <div className="container footer-content">
+        <div className="footer-left">
+          <a href="mailto:hello@anmol.com" className="footer-email">anmoltypebusiness@gmail.com</a>
+        </div>
+        <div className="footer-right">
+          <p>
+            &copy; {new Date().getFullYear()}{' '}
+            <a href="https://github.com/gugichu" target="_blank" rel="noopener noreferrer" className="creator-link">
+              The Gugichu Pvt. Ltd.
+            </a>
+          </p>
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .footer-section {
           background-color: #050505; /* Matches bg-dark */
           padding: 40px 24px;
@@ -74,8 +79,8 @@ const Footer = () => {
           }
         }
       `}</style>
-        </footer>
-    );
+    </footer>
+  );
 };
 
 export default Footer;
