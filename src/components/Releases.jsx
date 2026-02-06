@@ -83,7 +83,7 @@ const Releases = () => {
             >
               <div className="channel-profile">
                 <div className="avatar-wrapper">
-                  <img src="/pfp.jpg" alt="Anmol_type" className="channel-avatar" />
+                  <img src="/pfp.webp" alt="Anmol_type" className="channel-avatar" />
                 </div>
 
                 <div className="profile-info">
